@@ -1,0 +1,17 @@
+/etc/systemd/system/kubelet.service
+/opt/bin/host-rkt
+/etc/kubernetes/manifests/kube-controller-manager.yaml
+/etc/kubernetes/manifests/kube-scheduler.yaml
+/etc/kubernetes/manifests/kube-proxy.yaml
+/etc/kubernetes/manifests/kube-apiserver.yaml
+/srv/kubernetes/manifests/kube-dns-rc.yaml
+/srv/kubernetes/manifests/kube-dns-svc.yaml
+/srv/kubernetes/manifests/heapster-de.yaml
+/srv/kubernetes/manifests/heapster-svc.yaml
+/srv/kubernetes/manifests/kube-dashboard-rc.yaml
+/srv/kubernetes/manifests/kube-dashboard-svc.yaml
+/etc/flannel/options.env
+/etc/systemd/system/flanneld.service.d/40-ExecStartPre-symlink.conf.conf
+/etc/systemd/system/docker.service.d/40-flannel.conf
+/etc/kubernetes/cni/docker_opts_cni.env
+/etc/kubernetes/cni/net.d/10-flannel.conf

@@ -20,12 +20,4 @@ install_kubectl(){
   fi
 }
 
-update_vagrant_box(){
-  if [ $(vagrant box list  | grep coreos-stable) ]; then
-    echo "Update ${vagrant_box}"
-    vagrant box update --box ${vagrant_box}
-  fi
-}
-
 install_kubectl
-update_vagrant_box

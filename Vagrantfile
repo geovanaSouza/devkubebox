@@ -25,41 +25,31 @@ Vagrant.configure("2") do |config|
   config.ssh.insert_key = false
 
   config.vm.box = "coreos-%s" % $update_channel
-#  config.vm.box_version = ">= 1151.0.0"
-#  config.vm.box_url = "http://%s.release.core-os.net/amd64-usr/current/coreos_production_vagrant.json" % $update_channel
-#
-#  ["vmware_fusion", "vmware_workstation"].each do |vmware|
-#    config.vm.provider vmware do |v, override|
-#      v.vmx['numvcpus'] = 1
-#      v.vmx['memsize'] = NODE_MEMORY_SIZE
-#      v.gui = false
-#
-#      override.vm.box_url = "http://%s.release.core-os.net/amd64-usr/current/coreos_production_vagrant_vmware_fusion.json" % $update_channel
-#    end
-#  end
-#
-#  config.vm.provider :virtualbox do |v|
-#    v.cpus = 1
-#    v.gui = false
-#    v.memory = NODE_MEMORY_SIZE
-#
-#    # On VirtualBox, we don't have guest additions or a functional vboxsf
-#    # in CoreOS, so tell Vagrant that so it can be smarter.
-#    v.check_guest_additions = false
-#    v.functional_vboxsf     = false
-#  end
-#
-#  # plugin conflict
-#  if Vagrant.has_plugin?("vagrant-vbguest") then
-#    config.vbguest.auto_update = false
-#  end
-#
-#  config.vm.network :private_network, ip: NODE_IP
-#
-#  config.vm.provision :file, :source => SSL_TARBALL_PATH, :destination => "/tmp/ssl.tar"
-#  config.vm.provision :shell, :inline => "mkdir -p /etc/kubernetes/ssl && tar -C /etc/kubernetes/ssl -xf /tmp/ssl.tar", :privileged => true
-#
-#  config.vm.provision :file, :source => USER_DATA_PATH, :destination => "/tmp/vagrantfile-user-data"
-#  config.vm.provision :shell, :inline => "mv /tmp/vagrantfile-user-data /var/lib/coreos-vagrant/", :privileged => true
-#
+  config.vm.box_version = ">= 1122.3.0"
+  config.vm.box_url = "http://%s.release.core-os.net/amd64-usr/current/coreos_production_vagrant.json" % $update_channel
+
+
+  config.vm.provider :virtualbox do |v|
+    v.cpus = 1
+    v.gui = false
+    v.memory = NODE_MEMORY_SIZE
+
+    # On VirtualBox, we don't have guest additions or a functional vboxsf
+    # in CoreOS, so tell Vagrant that so it can be smarter.
+    v.check_guest_additions = false
+    v.functional_vboxsf     = false
+  end
+
+  # plugin conflict
+  if Vagrant.has_plugin?("vagrant-vbguest") then
+    config.vbguest.auto_update = false
+  end
+
+  config.vm.network :private_network, ip: NODE_IP
+
+  config.vm.provision :file, :source => SSL_TARBALL_PATH, :destination => "/tmp/ssl.tar"
+  config.vm.provision :shell, :inline => "mkdir -p /etc/kubernetes/ssl && tar -C /etc/kubernetes/ssl -xf /tmp/ssl.tar", :privileged => true
+
+  config.vm.provision :file, :source => USER_DATA_PATH, :destination => "/tmp/vagrantfile-user-data"
+  config.vm.provision :shell, :inline => "mv /tmp/vagrantfile-user-data /var/lib/coreos-vagrant/", :privileged => true
 end
