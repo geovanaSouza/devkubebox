@@ -30,7 +30,7 @@ Vagrant.configure("2") do |config|
 
 
   config.vm.provider :virtualbox do |v|
-    v.cpus = 1
+    v.cpus = 2
     v.gui = false
     v.memory = NODE_MEMORY_SIZE
 
@@ -52,4 +52,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision :file, :source => USER_DATA_PATH, :destination => "/tmp/vagrantfile-user-data"
   config.vm.provision :shell, :inline => "mv /tmp/vagrantfile-user-data /var/lib/coreos-vagrant/", :privileged => true
+
+  config.vm.network "forwarded_port", guest: 8080, host: 8080, guest_ip: "127.0.0.1", host_ip: "127.0.0.1"
+
 end

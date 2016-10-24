@@ -639,6 +639,7 @@ spec:
   ports:
   - port: 80
     targetPort: 9090
+  type: NodePort
 EOF
     fi
 
@@ -734,5 +735,5 @@ systemctl daemon-reload
 systemctl enable flanneld; systemctl start flanneld
 systemctl enable kubelet; systemctl start kubelet
 
-#start_addons
+start_addons
 echo "DONE"
